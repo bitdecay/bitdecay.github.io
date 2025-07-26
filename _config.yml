@@ -34,7 +34,7 @@ twitter:
 social:
   # bitdecay.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
+  name: bitdecay
   email: example@domain.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
