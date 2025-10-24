@@ -10,7 +10,8 @@ I was setting up a lab where I’ll demonstrate credential dumping using the inf
 ![password null](/images/2025/10-24-password-null.png)
 
 I have never run into this situation before in pentesting labs. Maybe I never noticed because the NTML/AES hashes were enough to escalate or move laterally in the networks. However, in this lab, I was expecting the cleartext password, but it wasn't there. What I thought would take two minutes now required some digging. That’s when I ran into WDigest.
- 
+
+### So what is this wdigest?
 WDigest is an authentication protocol, and it stores plaintext passwords in memory. However, WDigest is disabled by default in Windows 10 version 1703 and later versions of Windows. When explicitly configured though, it forces the Local Security Authority Subsystem Service (LSASS.exe) to store a user’s plain text password in memory after successful authentication.
 
 So I checked the wdigest in the registry because that’s where its configuration is. As you can see, the WDigest, by default in the latest Windows 10, doesn’t have the necessary registry key (UseLogonCredential) set up that stores plaintext passwords in memory.
