@@ -17,17 +17,17 @@ WDigest is an authentication protocol, and it stores plaintext passwords in memo
 
 So I checked the wdigest in the registry because that’s where its configuration is. As you can see, the WDigest, by default in the latest Windows 10, doesn’t have the necessary registry key (UseLogonCredential) set up that stores plaintext passwords in memory.
 
-https://imgur.com/a/Dagzqk2
+![image](https://github.com/bitdecay/bitdecay.github.io/blob/main/images/2025/10-24-wdigest.png)
 
 
 To accomplish my initial goal, I added UseLogonCredential with the value as 1 to WDigest to enable the plaintext caching. You can set it manually or run this command: 
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
 
-https://imgur.com/a/aw6Lzhs
+![image](https://github.com/bitdecay/bitdecay.github.io/blob/main/images/2025/10-24-uselogoncredentials.png)
 
 After changing, log off and log back on (or restart) to make the setting effective. Now when you dump credentials with sekurlsa::logonpasswords, you should see the target user’s cleartext password.
 
-https://imgur.com/a/ZoBEm1M
+![image](https://github.com/bitdecay/bitdecay.github.io/blob/main/images/2025/10-24-plaintext.png)
 
 Looking closely at the sekurlsa::logonpasswords output, it seems this module gets credentials from features like msv, wdigest, tspkg, kerberos, and credman. It became clear to me why the cleartext password shows up under wdigest and why we looked for cleartext password there.
 Interestingly, the session type for the dumped entry was Interactive, meaning that it was a local computer logon. This is interesting information because the way sekurlsa::logonpasswords handles interactive, network-only (e.g., SMB printers), and remote-interactive logons (e.g., RDP session) is different. WDigest hooks into the interactive credential path, so UseLogonCredential affects interactive sessions. That’s why we needed to log off/log back on (or restart) after changing the registry to see the change take effect.
