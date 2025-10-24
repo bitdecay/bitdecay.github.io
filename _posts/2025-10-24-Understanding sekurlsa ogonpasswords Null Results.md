@@ -25,7 +25,7 @@ To accomplish my initial goal, I added UseLogonCredential with the value as 1 to
 
 `reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f`
 
-After the command is completed, check the wdigest registry to see if the registry key was added. 
+After the command is completed, check the wdigest registry with the below command to see if the registry key was added. If it was successful, you will see `UseLogonCredential REG_DWORD 0x1` as the last key.
 
 `reg query HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest`
 
