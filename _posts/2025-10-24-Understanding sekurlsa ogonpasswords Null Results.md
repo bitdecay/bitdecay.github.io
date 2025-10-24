@@ -9,8 +9,7 @@ tags: [Active Directory]
 
 I was setting up a lab where I’ll demonstrate credential dumping using the infamous Mimikatz. I thought this should be easy: disable the AV and dump the credentials of local users. So, I logged into a fresh installed Windows 10 lab using the target local admin account and disabled the AV. I proceeded to drop a mimkatz.exe file into the desktop folder of the targeted user. I used the sekurlsa::logonpasswords command to extract credentials from LSASS memory. As expected, I can see the hashes of the logged-on user, but the password value was (null).
 
-https://imgur.com/a/bCY2OOw
-
+https://github.com/bitdecay/bitdecay.github.io/blob/main/images/2025/10-24-password-null.png
 
 I have never run into this situation before in pentesting labs. Maybe I never noticed because the NTML/AES hashes were enough to escalate or move laterally in the networks. However, in this lab, I was expecting the cleartext password, but it wasn't there. What I thought would take two minutes now required some digging. That’s when I ran into WDigest.
  
