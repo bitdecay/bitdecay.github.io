@@ -19,11 +19,12 @@ So I checked the wdigest in the registry because that’s where its configuratio
 
 
 To accomplish my initial goal, I added UseLogonCredential with the value as 1 to WDigest to enable the plaintext caching. You can set it manually or run this command:
+
 `reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f`
 
 ![uselogoncreds](/images/2025/10-24-uselogoncredentials.png)
 
-After changing, log off and log back on (or restart) to make the setting effective. Now when you dump credentials with sekurlsa::logonpasswords, you should see the target user’s cleartext password.
+When the command is completed, log off and log back on (or restart) to make the setting effective. Now when you dump credentials with sekurlsa::logonpasswords, you should see the target user’s cleartext password.
 
 ![plaintext password](/images/2025/10-24-plaintext.png)
 
