@@ -5,11 +5,11 @@ categories: [Active Directory]
 tags: [Active Directory]
 ---
 
-I was setting up a lab where I’ll demonstrate credential dumping using the infamous Mimikatz. I thought this should be easy: disable the AV and dump the credentials of local users. So, I logged into a fresh installed Windows 10 lab using the target local admin account and disabled the AV. I proceeded to drop a mimkatz.exe file into the desktop folder of the targeted user. I used the sekurlsa::logonpasswords command to extract credentials from LSASS memory. As expected, I can see the hashes of the logged-on user, but the password value was (null).
+I was setting up a lab where I’ll demonstrate credential dumping using the infamous Mimikatz. I thought this should be easy: disable the AV and dump the credentials of local users. So, I logged into a fresh installed Windows 10 lab using the target local admin account and disabled the AV. I proceeded to drop a mimkatz.exe file into the desktop folder of the targeted user. I am logged into the VM (windows 10) as a local administrator and fired up a CMD in admin mode. Then I used the sekurlsa::logonpasswords command to extract credentials from LSASS memory. As expected, I can see the hashes of the logged-on user, but the password value was (null).
 
 ![password null](/images/2025/10-24-password-null.png)
 
-I have never run into this situation before in pentesting labs. Maybe I never noticed because the NTML/AES hashes were enough to escalate or move laterally in the networks. However, in this lab, I was expecting the cleartext password, but it wasn't there. What I thought would take two minutes now required some digging. That’s when I ran into WDigest.
+I have never run into this situation before in pentesting labs. Maybe I never noticed because the NTML/AES hashes were enough to escalate or move laterally in the networks. However, in this lab, I was expecting the cleartext password, but it wasn't there. What I thought would take a minute of mimikatz demo now required some more digging to figure out why I wasn't getting the expected results. That’s when I was introduced to Wdigest. And let me share with you what I learned. 
 
 ### So what is this wdigest?
 WDigest is an authentication protocol, and it stores plaintext passwords in memory. However, WDigest is disabled by default in Windows 10 version 1703 and later versions of Windows. When explicitly configured though, it forces the Local Security Authority Subsystem Service (LSASS.exe) to store a user’s plain text password in memory after successful authentication.
