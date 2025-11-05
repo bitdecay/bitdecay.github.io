@@ -47,7 +47,7 @@ Here are a couple of more examples:
 
 ![network logon](/images/2025/11-5-lsassy-smb.png)
 
-2. RDP session is a remote-interactive logon. That's why the credentials including the were cached. 
+2. RDP session is a remote-interactive logon. That's why the cleartext credential was cached.
 
 ![network logon](/images/2025/11-5-lsassy-rdp.png)
 
