@@ -53,5 +53,5 @@ Here are a couple of more examples:
 
 
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day.
-
+{: .prompt-tip }
 I hope you learned something from this post.
