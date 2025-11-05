@@ -35,9 +35,23 @@ Now log off and log back on (or restart) to make the setting effective. Now when
 
 ![plaintext password](/images/2025/10-24-plaintext.png)
 
-Looking closely at the sekurlsa::logonpasswords output, it seems this module gets credentials from features like msv, wdigest, tspkg, kerberos, and credman. It became clear to me why the cleartext password shows up under wdigest and why we looked for cleartext password there.
+If you want to test this on Linux, you can use lsassy tool.
+
+![uselogoncreds2](/images/2025/11-5-lsassy.png)
+
+Looking closely at the sekurlsa::logonpasswords output, it seems this module gets credentials from features like msv, wdigest, tspkg, kerberos, credman, etc. It became clear to me why the cleartext password showed up under wdigest, and why we looked for cleartext password there.
 Interestingly, the session type for the dumped entry was Interactive, meaning that it was a local computer logon. This is interesting information because the way sekurlsa::logonpasswords handles interactive, network-only (e.g., SMB printers), and remote-interactive logons (e.g., RDP session) are different. WDigest hooks into the interactive credential path, so UseLogonCredential affects interactive sessions. That’s why we needed to log off/log back on (or restart) after changing the registry to see the change take effect, which makes the process local authentication. 
 
-Lastly, a (null) password can also occur for reasons other than WDigest being disabled. For example, if the user logged in via RDP and WDigest was not enabled for that session, cleartext credentials will not be cached the same way as an interactive logon.
+Here are a couple of more examples:
+1. Network logon with Lewisville account through smbclient is not cached because SMB authentication is performed using NTML or Kerberos, which don't transmit the user's cleartext password when logging in. Thus, lsassy couldn't find the cleartext passwords of Lewisville.
+
+![network logon](/images/2025/11-5-lsassy-smb.png)
+
+2. RDP session is a remote-interactive logon. That's why the credentials including the were cached. 
+
+![network logon](/images/2025/11-5-lsassy-rdp.png)
+
+
+Lastly, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day.
 
 I hope you learned something from this post.
