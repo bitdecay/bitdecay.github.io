@@ -35,7 +35,7 @@ Now log off and log back on (or restart) to make the setting effective. Now when
 
 ![plaintext password](/images/2025/10-24-plaintext.png)
 
-If you want to test this on Linux, you can use lsassy tool.
+If you want to test this on Linux, you can use [lsassy](https://github.com/login-securite/lsassy) tool.
 
 ![uselogoncreds2](/images/2025/11-5-lsassy.png)
 
