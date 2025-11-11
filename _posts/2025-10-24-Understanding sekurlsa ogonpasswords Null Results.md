@@ -87,6 +87,8 @@ ccc
     </tr>
 </table>
 
+sasdf
+
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day. Also, if a domain admin were to log in to the machine, for such as authenticating for admin required task, during a user has a interactive session on that machine, BOOM! Domain admin credential compromised!!!!!
 {: .prompt-tip }
 
