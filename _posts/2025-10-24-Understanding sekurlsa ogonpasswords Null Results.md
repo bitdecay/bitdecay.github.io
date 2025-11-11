@@ -41,7 +41,7 @@ If you want to test this on Linux, you can use [lsassy](https://github.com/login
 
 ![uselogoncreds2](/images/2025/11-5-lsassy.png)
 
-Looking closely at the `sekurlsa::logonpasswords` output, it seems this module gets credentials from features like msv, wdigest, tspkg, kerberos, credman, etc. and wdigest was solely responsible for extracting the cleartext passwords. Something intesting to note is that the session type for the password dumped entry was "**Interactive** from 1", meaning that it was a local computer logon. This is interesting information because the way sekurlsa::logonpasswords handles interactive, network-only (e.g., SMB printers), and remote-interactive logons (e.g., RDP session) are different. For WDigest to cache the passwords, the logon types must be interactive sessions. 
+Looking closely at the `sekurlsa::logonpasswords` output, it seems this module gets credentials from features like msv, wdigest, tspkg, kerberos, credman, etc. and wdigest was solely responsible for extracting the cleartext passwords. Something intesting to note is that the session type for the password dumped entry was "**Interactive** from 1", meaning that it was a local computer logon, specifically, LogonType 2. This is interesting information because the way sekurlsa::logonpasswords handles interactive logons (e.g., local console and RDP) and network logons (e.g., SMB printers) are different. For WDigest to cache the passwords, the logon types must be interactive sessions. 
 
 Here are a couple of more examples:
 1. Network logon with Lewisville account through smbclient is not cached because SMB authentication is performed using NTML or Kerberos, which don't transmit the user's cleartext password when logging in. Thus, lsassy couldn't find the cleartext passwords of Lewisville.
@@ -51,6 +51,15 @@ Here are a couple of more examples:
 2. RDP session is a remote-interactive logon. That's why the cleartext credential was cached.
 
 ![network logon](/images/2025/11-5-lsassy-rdp.png)
+
+Logon types and their credentials in LSASS memory:
+| Logon Number (Type)  | Logon Right | Examples | Cached in LSASS | 
+| ------------- | ------------- | ------------- | ------------- | 
+| 2 (Interactive)  | Access this computer physically  | Log on locally | ✅ Yes |
+| 3 (Network)  | Access this computer from the network  | Evil-WinRM, SMB, WMI, PSExec| ❌ No |
+| 4 (Batch) | Logon as a batch job | Scheduled Tasks, cron-like batch jobs run under a user account | ✅ Yes |
+| 9 (NewCredentials) | New credentials / network-only credentials | Access a computer with RunAs command | ✅ Yes |
+| 10 (Remote Interactive)  | Log on through Terminal Services  | Terminal Services, Remote Desktop or Remote Assistance. | ✅ Yes |
 
 
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day. Also, if a domain admin were to log in to the machine, for such as authenticating for admin required task, during a user has a interactive session on that machine, BOOM! Domain admin credential compromised!!!!!
