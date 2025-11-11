@@ -55,7 +55,7 @@ Here are a couple of more examples:
 Logon types and their credentials in LSASS memory:
 | Logon Number (Type)  | Logon Right | Examples | Cached in LSASS | 
 | ------------- | ------------- | ------------- | ------------- | 
-| 2 (Interactive)  | Access this computer physically  | Log on locally | ✅ Yes |
+| 2 (Interactive)  | Access the computer physically  | Log on locally | ✅ Yes |
 | 3 (Network)  | Access this computer from the network  | Evil-WinRM, SMB, WMI, PSExec| ❌ No |
 | 4 (Batch) | Logon as a batch job | Scheduled Tasks, cron-like batch jobs run under a user account | ✅ Yes |
 | 9 (NewCredentials) | New credentials / network-only credentials | Access a computer with RunAs command | ✅ Yes |
