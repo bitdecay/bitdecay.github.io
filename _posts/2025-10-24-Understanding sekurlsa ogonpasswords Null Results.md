@@ -61,6 +61,31 @@ Logon types and their credentials in LSASS memory:
 | 9 (NewCredentials) | New credentials / network-only credentials | Access a computer with RunAs command | ✅ Yes |
 | 10 (Remote Interactive)  | Log on through Terminal Services  | Terminal Services, Remote Desktop or Remote Assistance. | ✅ Yes |
 
+<table>
+    <tr>
+        <th>Content</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td>List</td>
+        <td><ul>
+            <li>aaa</li>
+            <li>bbb</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <td>Code block</td>
+        <td>
+            <pre><code>
+ccc
+            </code></pre>
+        </td>
+    </tr>
+    <tr>
+        <td>Image</td>
+        <td><img src="/assets/images/2023/tables-example.png"></td>
+    </tr>
+</table>
 
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day. Also, if a domain admin were to log in to the machine, for such as authenticating for admin required task, during a user has a interactive session on that machine, BOOM! Domain admin credential compromised!!!!!
 {: .prompt-tip }
