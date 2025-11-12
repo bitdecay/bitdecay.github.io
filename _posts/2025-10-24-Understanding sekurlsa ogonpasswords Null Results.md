@@ -53,41 +53,7 @@ Here are a couple of more examples:
 ![network logon](/images/2025/11-5-lsassy-rdp.png)
 
 Logon types and their credentials in LSASS memory:
-| Logon Number (Type)  | Logon Right | Examples | Cached in LSASS | 
-| ------------- | ------------- | ------------- | ------------- | 
-| 2 (Interactive)  | Access the computer physically  | Log on locally | ✅ Yes |
-| 3 (Network)  | Access this computer from the network  | Evil-WinRM, SMB, WMI, PSExec| ❌ No |
-| 4 (Batch) | Logon as a batch job | Scheduled Tasks, cron-like batch jobs run under a user account | ✅ Yes |
-| 9 (NewCredentials) | New credentials / network-only credentials | Access a computer with RunAs command | ✅ Yes |
-| 10 (Remote Interactive)  | Log on through Terminal Services  | Terminal Services, Remote Desktop or Remote Assistance. | ✅ Yes |
-
-<table>
-    <tr>
-        <th>Content</th>
-        <th>Example</th>
-    </tr>
-    <tr>
-        <td>List</td>
-        <td><ul>
-            <li>aaa</li>
-            <li>bbb</li>
-        </ul></td>
-    </tr>
-    <tr>
-        <td>Code block</td>
-        <td>
-            <pre><code>
-ccc
-            </code></pre>
-        </td>
-    </tr>
-    <tr>
-        <td>Image</td>
-        <td><img src="/assets/images/2023/tables-example.png"></td>
-    </tr>
-</table>
-
-sasdf
+![logon types](/images/2025/11-12-logontypes.png)
 
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day. Also, if a domain admin were to log in to the machine, for such as authenticating for admin required task, during a user has a interactive session on that machine, BOOM! Domain admin credential compromised!!!!!
 {: .prompt-tip }
