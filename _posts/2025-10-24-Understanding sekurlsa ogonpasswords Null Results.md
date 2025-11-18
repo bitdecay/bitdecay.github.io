@@ -52,7 +52,7 @@ Here are a couple of more examples:
 
 ![network logon](/images/2025/11-5-lsassy-rdp.png)
 
-Logon types and their credentials in LSASS memory:
+The following table shows which Logon types got cached their credentials into LSASS memory. Note that, the Wdigest only caches the plaintext passwords of logon types 2 and 10.
 ![logon types](/images/2025/11-12-logontypes.png)
 
 >Note that, the cached cleartext passwords are removed from the system when the users log off. So if you get cleartext passwords through wdigest during your attack, then luck must be on your side that day. Also, if a domain admin were to log in to the machine, for such as authenticating for admin required task, during a user has a interactive session on that machine, BOOM! Domain admin credential compromised!!!!!
