@@ -19,6 +19,8 @@ Then verify your account.  If the email address and account names are valid, you
 
 After you have created you password, you will be prompted a page to choose what kind of account plan you are looking for. There are two plans: Free (6 months) and Paid. 
 
+![2 plans](/images/2025/12-17-AWS-paid-account.png)
+
 The majority of the labs I will be creating in this journey can be replicated with an AWS free plan accuont, so go with the Free plan. For privacy reasons, I will not be showing the information I typed for the account.
 
 I ended up going with the Paid plan because the information I provided for the Free plan were associated with my previous registered AWS account. If you are brand new or you are using new information to create your AWS account, you should be fine with the Free (6 months) plan. 
