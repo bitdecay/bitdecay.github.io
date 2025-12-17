@@ -10,11 +10,11 @@ This is the first post on my AWS pentesting journey. I'll be documenting the AWS
 Go to the following registration link for "Sign Up for AWS" and type in an email address and an account name you want to you use for you AWS account. 
 https://signin.aws.amazon.com/signup?request_type=register
 
-![AWS registration](images/2025/12-17-AWS-register.png)
+![AWS registration](/images/2025/12-17-AWS-register.png)
 
 Then verify your account.  If the email address and account names are valid, you will be sent a verification code to your email addresss. Once you have verified your email address, you will be taken to the next page for creating the account's password. 
 
-![Create password](images/2025/12-17-AWS-password.png)
+![Create password](/images/2025/12-17-AWS-password.png)
 
 
 After you have created you password, you will be prompted a page to choose what kind of account plan you are looking for. There are two plans: Free (6 months) and Paid. 
@@ -23,10 +23,10 @@ The majority of the labs I will be creating in this journey can be replicated wi
 
 I ended up going with the Paid plan because the information I provided for the Free plan were associated with my previous registered AWS account. If you are brand new or you are using new information to create your AWS account, you should be fine with the Free (6 months) plan. 
 
-![paid plan](images/2025/12-17-AWS-paid-picked.png)
+![paid plan](/images/2025/12-17-AWS-paid-picked.png)
 
 Once you have done the registration, you will be welcomed with the Congratulations page. 
 
-![finsh setup](images/2025/12-17-AWS-setup-finish.png)
+![finsh setup](/images/2025/12-17-AWS-setup-finish.png)
 
 You have now signed up on AWS. Congrats!
